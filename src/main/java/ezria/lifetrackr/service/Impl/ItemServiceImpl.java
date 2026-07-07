@@ -7,9 +7,11 @@ import ezria.lifetrackr.Entity.Item;
 import ezria.lifetrackr.Mapper.ItemMapper;
 import ezria.lifetrackr.VO.ItemVO;
 import ezria.lifetrackr.service.ItemService;
+import ezria.lifetrackr.service.TimeLineEventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +21,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemMapper itemMapper;
+
+    @Autowired
+    private TimeLineEventService timeLineEventService;
 
     @Override
     public Page<ItemVO> getItems(Long userId, String type, Integer pageNum, Integer pageSize) {
@@ -48,10 +53,18 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void save(ItemDTO itemDTO) {
+    @Transactional(rollbackFor = Exception.class)
+    public Long save(ItemDTO itemDTO) {
+        // 1. 插入 item
         Item item = new Item();
         BeanUtils.copyProperties(itemDTO, item);
         itemMapper.itemInsert(item);
+        Long itemId = item.getId();
+
+        // 2. 插入时间线事件（同一事务，任一失败则全部回滚）
+        timeLineEventService.save(itemDTO, itemId);
+
+        return itemId;
     }
 
     @Override
@@ -61,17 +74,18 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemVO getItem(Long userId, Long itemId) {
-        QueryWrapper<Item> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_id", userId);
-        wrapper.eq("id", itemId);
-        Item item = itemMapper.selectOne(wrapper);
+        Item item = itemMapper.selectByIdAndUser(userId, itemId);
         return toVO(item);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void update(ItemDTO itemDTO) {
         Item item = new Item();
         BeanUtils.copyProperties(itemDTO, item);
+
+        timeLineEventService.createLog(itemDTO, item.getId());
+
         itemMapper.updateByIdAndUser(item);
     }
 

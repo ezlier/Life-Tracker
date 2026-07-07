@@ -1,0 +1,17 @@
+package ezria.lifetrackr.service;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ezria.lifetrackr.DTO.ItemDTO;
+import ezria.lifetrackr.VO.TimeLineEventVO;
+
+import java.time.LocalDate;
+
+public interface TimeLineEventService {
+    void save(ItemDTO itemDTO, Long itemId);
+
+    void createLog(ItemDTO itemDTO, Long id);
+
+    Page<TimeLineEventVO> getTimeLineEvents(Long userId, Long itemId, String eventType,
+                                             LocalDate startDate, LocalDate endDate,
+                                             Integer pageNum, Integer pageSize);
+}
