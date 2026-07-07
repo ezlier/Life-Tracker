@@ -1,4 +1,4 @@
-package ezria.lifetrackr.Entity;
+package ezria.lifetrackr.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,16 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
-
-
-/**
- * Item entity representing a trackable item in the application.
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class ItemVO {
     Long id;
     Long userId;
 

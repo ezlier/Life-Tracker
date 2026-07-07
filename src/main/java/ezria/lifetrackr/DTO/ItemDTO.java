@@ -1,21 +1,13 @@
-package ezria.lifetrackr.Entity;
+package ezria.lifetrackr.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-
-
-
-/**
- * Item entity representing a trackable item in the application.
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class ItemDTO {
     Long id;
     Long userId;
 
@@ -26,7 +18,4 @@ public class Item {
 
     Integer rating;   // 评分（1~10）
     String status;    // planned / doing / done
-
-    LocalDateTime createdAt;
-    LocalDateTime updatedAt;
 }

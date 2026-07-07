@@ -20,6 +20,9 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginMapper loginMapper;
 
+    @Autowired
+    private JwtUtils jwtUtils;
+
 
     @Override
     public UserVO login(UserDTO userDTO) {
@@ -29,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
             Map<String, Object> userMap = new HashMap<>();
             userMap.put("id", user.getId());
             userMap.put("username", user.getName());
-            String token = JwtUtils.generateToken(userMap);
+            String token = jwtUtils.generateToken(userMap);
             return new UserVO(user.getId(), user.getName(), token);
 
         }

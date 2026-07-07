@@ -1,0 +1,738 @@
+{
+  "groups": [
+    {
+      "name": "mybatis-plus",
+      "type": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.configuration",
+      "type": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.global-config",
+      "type": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config",
+      "type": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "sourceMethod": "getDbConfig()"
+    },
+    {
+      "name": "mybatis-plus.global-config.sequence",
+      "type": "com.baomidou.mybatisplus.core.config.GlobalConfig$Sequence",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "sourceMethod": "getSequence()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker",
+      "type": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusLanguageDriverAutoConfiguration$FreeMarkerConfiguration",
+      "sourceMethod": "freeMarkerLanguageDriverConfig()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file",
+      "type": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig",
+      "sourceMethod": "getTemplateFile()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.path-provider",
+      "type": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig$PathProviderConfig",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig",
+      "sourceMethod": "getPathProvider()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf",
+      "type": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusLanguageDriverAutoConfiguration$ThymeleafConfiguration",
+      "sourceMethod": "thymeleafLanguageDriverConfig()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect",
+      "type": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusLanguageDriverAutoConfiguration$ThymeleafConfiguration$MetadataThymeleafLanguageDriverConfig",
+      "sourceMethod": "getDialect()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect",
+      "type": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig",
+      "sourceMethod": "getDialect()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file",
+      "type": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusLanguageDriverAutoConfiguration$ThymeleafConfiguration$MetadataThymeleafLanguageDriverConfig",
+      "sourceMethod": "getTemplateFile()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file",
+      "type": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig",
+      "sourceMethod": "getTemplateFile()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.path-provider",
+      "type": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig$PathProviderConfig",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig",
+      "sourceMethod": "getPathProvider()"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.velocity",
+      "type": "org.mybatis.scripting.velocity.VelocityLanguageDriverConfig",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusLanguageDriverAutoConfiguration$VelocityConfiguration",
+      "sourceMethod": "velocityLanguageDriverConfig()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mybatis-plus.check-config-location",
+      "type": "java.lang.Boolean",
+      "description": "Indicates whether perform presence check of the MyBatis xml config file.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "mybatis-plus.config-location",
+      "type": "java.lang.String",
+      "description": "Location of MyBatis xml config file.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.configuration-properties",
+      "type": "java.util.Properties",
+      "description": "Externalized properties for MyBatis configuration.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.configuration.aggressive-lazy-loading",
+      "type": "java.lang.Boolean",
+      "description": "When enabled, any method call will load all the lazy properties of the object. Otherwise, each property is loaded on demand (see also lazyLoadTriggerMethods). Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.arg-name-based-constructor-auto-mapping",
+      "type": "java.lang.Boolean",
+      "description": "When applying constructor auto-mapping, argument name is used to search the column to map instead of relying on the column order. Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.auto-mapping-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingBehavior",
+      "description": "Specifies if and how MyBatis should automatically map columns to fields\/properties. NONE disables auto-mapping. PARTIAL will only auto-map results with no nested result mappings defined inside. FULL will auto-map result mappings of any complexity (containing nested or otherwise). Default is PARTIAL.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.auto-mapping-unknown-column-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingUnknownColumnBehavior",
+      "description": "Specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target. Default is NONE.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.cache-enabled",
+      "type": "java.lang.Boolean",
+      "description": "Globally enables or disables any caches configured in any mapper under this configuration. Default is true.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.call-setters-on-nulls",
+      "type": "java.lang.Boolean",
+      "description": "Specifies if setters or map's put method will be called when a retrieved value is null. It is useful when you rely on Map.keySet() or null value initialization. Note primitives such as (int,boolean,etc.) will not be set to null. Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.configuration-factory",
+      "type": "java.lang.Class<?>",
+      "description": "Specifies the class that provides an instance of Configuration. The returned Configuration instance is used to load lazy properties of deserialized objects. This class must have a method with a signature static Configuration getConfiguration().",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.database-id",
+      "type": "java.lang.String",
+      "description": "Specifies the database identify value for switching query to use.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-enum-type-handler",
+      "type": "java.lang.Class<? extends org.apache.ibatis.type.TypeHandler>",
+      "description": "A default TypeHandler class for Enum.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration",
+      "defaultValue": "org.apache.ibatis.type.EnumTypeHandler"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType",
+      "description": "Configures the default executor. SIMPLE executor does nothing special. REUSE executor reuses prepared statements. BATCH executor reuses statements and batches updates. Default is SIMPLE.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-fetch-size",
+      "type": "java.lang.Integer",
+      "description": "Sets the driver a hint as to control fetching size for return results. This parameter value can be overridden by a query setting.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-result-set-type",
+      "type": "org.apache.ibatis.mapping.ResultSetType",
+      "description": "Specifies a scroll strategy when omit it per statement settings.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-scripting-language-driver",
+      "type": "java.lang.Class<? extends org.apache.ibatis.scripting.LanguageDriver>",
+      "description": "Specifies the language used by default for dynamic SQL generation.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-sql-provider-type",
+      "type": "java.lang.Class<?>",
+      "description": "Specifies a sql provider class that holds provider method. This class apply to the type(or value) attribute on sql provider annotation(e.g. @SelectProvider), when these attribute was omitted.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-statement-timeout",
+      "type": "java.lang.Integer",
+      "description": "Sets the number of seconds the driver will wait for a response from the database.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.jdbc-type-for-null",
+      "type": "org.apache.ibatis.type.JdbcType",
+      "description": "Specifies the JDBC type for null values when no specific JDBC type was provided for the parameter. Some drivers require specifying the column JDBC type but others work with generic values like NULL, VARCHAR or OTHER. Default is OTHER.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.lazy-load-trigger-methods",
+      "type": "java.util.Set<java.lang.String>",
+      "description": "Specifies which Object's methods trigger a lazy load. Default is [equals,clone,hashCode,toString].",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.lazy-loading-enabled",
+      "type": "java.lang.Boolean",
+      "description": "Globally enables or disables lazy loading. When enabled, all relations will be lazily loaded. This value can be superseded for a specific relation by using the fetchType attribute on it. Default is False.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.local-cache-scope",
+      "type": "org.apache.ibatis.session.LocalCacheScope",
+      "description": "MyBatis uses local cache to prevent circular references and speed up repeated nested queries. By default, (SESSION) all queries executed during a session are cached. If localCacheScope=STATEMENT local session will be used just for statement execution, no data will be shared between two different calls to the same SqlSession. Default is SESSION.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.log-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.logging.Log>",
+      "description": "Specifies which logging implementation MyBatis should use. If this setting is not present logging implementation will be discovered.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.log-prefix",
+      "type": "java.lang.String",
+      "description": "Specifies the prefix string that MyBatis will add to the logger names.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.map-underscore-to-camel-case",
+      "type": "java.lang.Boolean",
+      "description": "Enables automatic mapping from classic database column names A_COLUMN to camel case classic Java property names aColumn. Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.multiple-result-sets-enabled",
+      "type": "java.lang.Boolean",
+      "description": "Allows or disallows multiple ResultSets to be returned from a single statement (compatible driver required). Default is true.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.nullable-on-for-each",
+      "type": "java.lang.Boolean",
+      "description": "Specifies the default value of 'nullable' attribute on 'foreach' tag. Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.return-instance-for-empty-row",
+      "type": "java.lang.Boolean",
+      "description": "MyBatis, by default, returns null when all the columns of a returned row are NULL. When this setting is enabled, MyBatis returns an empty instance instead. Note that it is also applied to nested results (i.e. collection and association). Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.safe-result-handler-enabled",
+      "type": "java.lang.Boolean",
+      "description": "Allows using ResultHandler on nested statements. If allowed, set the false. Default is true.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.safe-row-bounds-enabled",
+      "type": "java.lang.Boolean",
+      "description": "Allows using RowBounds on nested statements. If allowed, set the false. Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.shrink-whitespaces-in-sql",
+      "type": "java.lang.Boolean",
+      "description": "Removes extra whitespace characters from the SQL. Note that this also affects literal strings in SQL. Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.use-actual-param-name",
+      "type": "java.lang.Boolean",
+      "description": "Allow referencing statement parameters by their actual names declared in the method signature. To use this feature, your project must be compiled in Java 8 with -parameters option. Default is true.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.use-column-label",
+      "type": "java.lang.Boolean",
+      "description": "Uses the column label instead of the column name. Different drivers behave differently in this respect. Refer to the driver documentation, or test out both modes to determine how your driver behaves. Default is true.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.use-generated-keys",
+      "type": "java.lang.Boolean",
+      "description": "Allows JDBC support for generated keys. A compatible driver is required. This setting forces generated keys to be used if set to true, as some drivers deny compatibility but still work (e.g. Derby). Default is false.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.use-generated-short-key",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.variables",
+      "type": "java.util.Properties",
+      "description": "Specify any configuration variables.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.configuration.vfs-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.io.VFS>",
+      "description": "Specifies VFS implementations.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration"
+    },
+    {
+      "name": "mybatis-plus.default-scripting-language-driver",
+      "type": "java.lang.Class<? extends org.apache.ibatis.scripting.LanguageDriver>",
+      "description": "The default scripting language driver class. (Available when use together with mybatis-spring 2.0.2+) <p> 如果设置了这个,你会至少失去几乎所有 mp 提供的功能",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties",
+      "defaultValue": "com.baomidou.mybatisplus.core.MybatisXMLLanguageDriver"
+    },
+    {
+      "name": "mybatis-plus.executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType",
+      "description": "Execution mode for {@link org.mybatis.spring.SqlSessionTemplate}.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.global-config.annotation-handler",
+      "type": "com.baomidou.mybatisplus.core.handlers.AnnotationHandler",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.banner",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.capital-mode",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.column-format",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.escape-symbol",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.id-type",
+      "type": "com.baomidou.mybatisplus.annotation.IdType",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.insert-ignore-auto-increment-column",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.insert-strategy",
+      "type": "com.baomidou.mybatisplus.annotation.FieldStrategy",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.key-generators",
+      "type": "java.util.List<com.baomidou.mybatisplus.core.incrementer.IKeyGenerator>",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.logic-delete-field",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.logic-delete-value",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.logic-not-delete-value",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.property-format",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.replace-placeholder",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.schema",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.table-format",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.table-prefix",
+      "type": "java.lang.String",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.table-underline",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.update-strategy",
+      "type": "com.baomidou.mybatisplus.annotation.FieldStrategy",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.where-strategy",
+      "type": "com.baomidou.mybatisplus.annotation.FieldStrategy",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.enable-sql-runner",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.mapper-registry-cache",
+      "type": "java.util.Set<java.lang.String>",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.post-init-table-info-handler",
+      "type": "com.baomidou.mybatisplus.core.handlers.PostInitTableInfoHandler",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig"
+    },
+    {
+      "name": "mybatis-plus.global-config.sequence.datacenter-id",
+      "type": "java.lang.Long",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$Sequence"
+    },
+    {
+      "name": "mybatis-plus.global-config.sequence.ignored-interfaces",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$Sequence"
+    },
+    {
+      "name": "mybatis-plus.global-config.sequence.preferred-networks",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$Sequence"
+    },
+    {
+      "name": "mybatis-plus.global-config.sequence.worker-id",
+      "type": "java.lang.Long",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$Sequence"
+    },
+    {
+      "name": "mybatis-plus.global-config.super-mapper-class",
+      "type": "java.lang.Class<?>",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig"
+    },
+    {
+      "name": "mybatis-plus.inject-sql-session-on-mapper-scan",
+      "type": "java.lang.Boolean",
+      "description": "Set whether inject a SqlSessionTemplate or SqlSessionFactory bean (If you want to back to the behavior of 2.2.1 or before, specify false). If you use together with spring-native, should be set true.",
+      "defaultValue": true
+    },
+    {
+      "name": "mybatis-plus.lazy-initialization",
+      "type": "java.lang.Boolean",
+      "description": "Set whether enable lazy initialization for mapper bean.",
+      "defaultValue": false
+    },
+    {
+      "name": "mybatis-plus.mapper-default-scope",
+      "type": "java.lang.String",
+      "description": "A default scope for mapper bean that scanned by auto-configure.",
+      "defaultValue": ""
+    },
+    {
+      "name": "mybatis-plus.mapper-locations",
+      "type": "java.lang.String[]",
+      "description": "Locations of MyBatis mapper files. @since 3.1.2 add default value",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties",
+      "defaultValue": [
+        "classpath*:\/mapper\/**\/*.xml"
+      ]
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.freemarker-settings",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.base-dir",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.path-provider.cache-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.path-provider.includes-mapper-name-when-separate-directory",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.path-provider.includes-package-path",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.path-provider.prefix",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.template-file.path-provider.separate-directory-per-mapper",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.customizer-instance",
+      "type": "org.mybatis.scripting.thymeleaf.TemplateEngineCustomizer",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect.bind-variable-render-instance",
+      "type": "org.mybatis.scripting.thymeleaf.processor.BindVariableRender",
+      "sourceType": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect.like-additional-escape-target-chars",
+      "type": "java.lang.Character[]",
+      "sourceType": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect.like-escape-char",
+      "type": "java.lang.Character",
+      "sourceType": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect.like-escape-clause-format",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect.prefix",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.base-dir",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.cache-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.cache-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.encoding",
+      "type": "java.nio.charset.Charset",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.path-provider.cache-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.path-provider.includes-mapper-name-when-separate-directory",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.path-provider.includes-package-path",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.path-provider.prefix",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.path-provider.separate-directory-per-mapper",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig$PathProviderConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.template-file.patterns",
+      "type": "java.lang.String[]",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig$TemplateFileConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.use2way",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.velocity.additional-context-attributes",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "org.mybatis.scripting.velocity.VelocityLanguageDriverConfig"
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.velocity.velocity-settings",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "org.mybatis.scripting.velocity.VelocityLanguageDriverConfig"
+    },
+    {
+      "name": "mybatis-plus.type-aliases-package",
+      "type": "java.lang.String",
+      "description": "Packages to search type aliases. (Package delimiters are \",; \\t\\n\")",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.type-aliases-super-type",
+      "type": "java.lang.Class<?>",
+      "description": "The super class for filtering type alias. If this not specifies, the MyBatis deal as type alias all classes that searched from typeAliasesPackage.",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.type-handlers-package",
+      "type": "java.lang.String",
+      "description": "Packages to search for type handlers. (Package delimiters are \",; \\t\\n\")",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties"
+    },
+    {
+      "name": "mybatis-plus.configuration.default-scripting-language",
+      "type": "java.lang.Class<? extends org.apache.ibatis.scripting.LanguageDriver>",
+      "sourceType": "com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties$CoreConfiguration",
+      "defaultValue": "com.baomidou.mybatisplus.core.MybatisXMLLanguageDriver",
+      "deprecated": true,
+      "deprecation": {
+        "level": "error",
+        "reason": "设置无效.",
+        "replacement": "mybatis-plus.configuration.default-scripting-language-driver"
+      }
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.key-generator",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig",
+      "deprecated": true,
+      "deprecation": {
+        "level": "error",
+        "reason": "3.0开始废除此属性，请使用@Bean的方式注入至Spring容器."
+      }
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.select-strategy",
+      "type": "com.baomidou.mybatisplus.annotation.FieldStrategy",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig",
+      "deprecated": true,
+      "deprecation": {}
+    },
+    {
+      "name": "mybatis-plus.global-config.identifier-generator",
+      "type": "com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "deprecated": true,
+      "deprecation": {
+        "level": "error",
+        "reason": "请使用@Bean的方式注入至Spring容器."
+      }
+    },
+    {
+      "name": "mybatis-plus.global-config.meta-object-handler",
+      "type": "com.baomidou.mybatisplus.core.handlers.MetaObjectHandler",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "deprecated": true,
+      "deprecation": {
+        "level": "error",
+        "reason": "3.0开始废除此属性，请使用@Bean的方式注入至Spring容器."
+      }
+    },
+    {
+      "name": "mybatis-plus.global-config.sql-injector",
+      "type": "com.baomidou.mybatisplus.core.injector.ISqlInjector",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "deprecated": true,
+      "deprecation": {
+        "level": "error",
+        "reason": "3.0开始废除此属性，请使用@Bean的方式注入至Spring容器."
+      }
+    },
+    {
+      "name": "mybatis-plus.global-config.sql-session-factory",
+      "type": "org.apache.ibatis.session.SqlSessionFactory",
+      "sourceType": "com.baomidou.mybatisplus.core.config.GlobalConfig",
+      "deprecated": true,
+      "deprecation": {}
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.freemarker.base-package",
+      "type": "java.lang.String",
+      "sourceType": "org.mybatis.scripting.freemarker.FreeMarkerLanguageDriverConfig",
+      "deprecated": true,
+      "deprecation": {}
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.customizer",
+      "type": "java.lang.Class<? extends org.mybatis.scripting.thymeleaf.TemplateEngineCustomizer>",
+      "sourceType": "org.mybatis.scripting.thymeleaf.ThymeleafLanguageDriverConfig",
+      "deprecated": true,
+      "deprecation": {}
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.thymeleaf.dialect.bind-variable-render",
+      "type": "java.lang.Class<? extends org.mybatis.scripting.thymeleaf.processor.BindVariableRender>",
+      "sourceType": "org.mybatis.scripting.thymeleaf.SqlGeneratorConfig$DialectConfig",
+      "deprecated": true,
+      "deprecation": {}
+    },
+    {
+      "name": "mybatis-plus.scripting-language-driver.velocity.userdirective",
+      "type": "java.lang.String[]",
+      "sourceType": "org.mybatis.scripting.velocity.VelocityLanguageDriverConfig",
+      "deprecated": true,
+      "deprecation": {}
+    }
+  ],
+  "hints": []
+}
