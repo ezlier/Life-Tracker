@@ -17,6 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,8 +83,19 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
 
         Page<TimeLineEvent> eventPage = timeLineEventMapper.selectPage(page, wrapper);
 
+        // 批量查询关联的 Item，避免 N+1 问题
+        Set<Long> itemIds = eventPage.getRecords().stream()
+                .map(TimeLineEvent::getItemId)
+                .collect(Collectors.toSet());
+        Map<Long, Item> itemMap = Map.of();
+        if (!itemIds.isEmpty()) {
+            List<Item> items = itemMapper.selectBatchIds(itemIds);
+            itemMap = items.stream().collect(Collectors.toMap(Item::getId, Function.identity()));
+        }
+        final Map<Long, Item> finalItemMap = itemMap;
+
         List<TimeLineEventVO> voList = eventPage.getRecords().stream()
-                .map(this::toVO)
+                .map(event -> toVO(event, finalItemMap.get(event.getItemId())))
                 .collect(Collectors.toList());
 
         Page<TimeLineEventVO> voPage = new Page<>(pageNum, pageSize, eventPage.getTotal());
@@ -89,10 +103,18 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
         return voPage;
     }
 
-    private TimeLineEventVO toVO(TimeLineEvent event) {
+    private TimeLineEventVO toVO(TimeLineEvent event, Item item) {
         TimeLineEventVO vo = new TimeLineEventVO();
         BeanUtils.copyProperties(event, vo);
         vo.setEventType(event.getEventType().name());
+
+        if (item != null) {
+            vo.setItemTitle(item.getTitle());
+            vo.setItemCover(item.getCover());
+            vo.setItemRating(item.getRating());
+            vo.setItemType(item.getType());
+            vo.setItemStatus(item.getStatus());
+        }
         return vo;
     }
 }

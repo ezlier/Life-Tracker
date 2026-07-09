@@ -10,8 +10,8 @@ public interface ItemMapper extends BaseMapper<Item> {
     @Select("select * from item where user_id = #{userId} and id = #{itemId}")
     Item selectByIdAndUser(Long userId, Long itemId);
 
-    @Insert("insert into item (user_id, type, title, description, rating, status) " +
-            "values (#{userId}, #{type}, #{title}, #{description}, #{rating}, #{status})")
+    @Insert("insert into item (user_id, type, title, cover, description, rating, status) " +
+            "values (#{userId}, #{type}, #{title}, #{cover}, #{description}, #{rating}, #{status})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void itemInsert(Item item);
 

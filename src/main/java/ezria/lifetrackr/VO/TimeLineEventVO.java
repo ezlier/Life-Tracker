@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TimeLineEventVO {
+    // 事件字段
     private Long id;
     private Long userId;
     private Long itemId;
@@ -17,4 +18,11 @@ public class TimeLineEventVO {
     private String description;
     private String eventData;
     private LocalDateTime createdAt;
+
+    // 关联 Item 信息
+    private String itemTitle;
+    private String itemCover;
+    private Integer itemRating;
+    private String itemType;
+    private String itemStatus;
 }
