@@ -8,8 +8,10 @@ import ezria.lifetrackr.service.ItemService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -23,12 +25,14 @@ public class ItemController {
     @GetMapping
     public Result getItems(HttpServletRequest request,
                            @RequestParam(required = false) String type,
+                           @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                           @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                            @RequestParam(defaultValue = "1") Integer pageNum,
                            @RequestParam(defaultValue = "10") Integer pageSize) {
 
         Long userId = (Long) request.getAttribute("userId");
-        log.info("Getting items: userId={}, type={}, pageNum={}, pageSize={}", userId, type, pageNum, pageSize);
-        Page<ItemVO> page = itemService.getItems(userId, type, pageNum, pageSize);
+        log.info("Getting items: userId={}, type={}, startDate={}, endDate={}", userId, type, startDate, endDate);
+        Page<ItemVO> page = itemService.getItems(userId, type, startDate, endDate, pageNum, pageSize);
         return Result.success(page);
     }
 

@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +28,8 @@ public class ItemServiceImpl implements ItemService {
     private TimeLineEventService timeLineEventService;
 
     @Override
-    public Page<ItemVO> getItems(Long userId, String type, Integer pageNum, Integer pageSize) {
+    public Page<ItemVO> getItems(Long userId, String type, LocalDate startDate, LocalDate endDate,
+                                  Integer pageNum, Integer pageSize) {
         // 1. 构建分页对象
         Page<Item> page = new Page<>(pageNum, pageSize);
 
@@ -35,6 +38,12 @@ public class ItemServiceImpl implements ItemService {
         wrapper.eq("user_id", userId);
         if (type != null && !type.isEmpty()) {
             wrapper.eq("type", type);
+        }
+        if (startDate != null) {
+            wrapper.ge("created_at", startDate.atStartOfDay());
+        }
+        if (endDate != null) {
+            wrapper.le("created_at", endDate.plusDays(1).atStartOfDay());
         }
         wrapper.orderByDesc("created_at");
 

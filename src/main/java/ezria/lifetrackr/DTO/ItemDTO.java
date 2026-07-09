@@ -13,7 +13,7 @@ public class ItemDTO {
 
     String type;      // movie/book/game/workout
     String title;     // 标题
-
+    String cover;
     String description;
 
     Integer rating;   // 评分（1~10）

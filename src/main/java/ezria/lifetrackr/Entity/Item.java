@@ -21,6 +21,7 @@ public class Item {
 
     String type;      // movie/book/game/workout
     String title;     // 标题
+    String cover;
 
     String description;
 

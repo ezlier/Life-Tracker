@@ -15,7 +15,7 @@ public class ItemVO {
 
     String type;      // movie/book/game/workout
     String title;     // 标题
-
+    String cover;     // 封面图片
     String description;
 
     Integer rating;   // 评分（1~10）
