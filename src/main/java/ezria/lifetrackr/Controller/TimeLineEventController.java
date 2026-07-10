@@ -1,10 +1,10 @@
 package ezria.lifetrackr.Controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ezria.lifetrackr.Common.Annotation.CurrentUserId;
 import ezria.lifetrackr.Common.Result;
 import ezria.lifetrackr.VO.TimeLineEventVO;
 import ezria.lifetrackr.service.TimeLineEventService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,7 +24,7 @@ public class TimeLineEventController {
     private TimeLineEventService timeLineEventService;
 
     @GetMapping
-    public Result getTimeLineEvents(HttpServletRequest request,
+    public Result getTimeLineEvents(@CurrentUserId Long userId,
                                      @RequestParam(required = false) Long itemId,
                                      @RequestParam(required = false) String eventType,
                                      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
@@ -32,7 +32,6 @@ public class TimeLineEventController {
                                      @RequestParam(defaultValue = "1") Integer pageNum,
                                      @RequestParam(defaultValue = "10") Integer pageSize) {
 
-        Long userId = (Long) request.getAttribute("userId");
         log.info("Getting timeline events: userId={}, itemId={}, eventType={}, startDate={}, endDate={}",
                  userId, itemId, eventType, startDate, endDate);
 

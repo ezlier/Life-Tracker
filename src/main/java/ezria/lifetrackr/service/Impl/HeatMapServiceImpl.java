@@ -1,13 +1,15 @@
 package ezria.lifetrackr.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import ezria.lifetrackr.Entity.HeatMap;
+import ezria.lifetrackr.Entity.Item;
 import ezria.lifetrackr.Mapper.HeatMapMapper;
+import ezria.lifetrackr.Mapper.ItemMapper;
 import ezria.lifetrackr.service.HeatMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,9 @@ public class HeatMapServiceImpl implements HeatMapService {
 
     @Autowired
     private HeatMapMapper heatMapMapper;
+
+    @Autowired
+    private ItemMapper itemMapper;
 
     @Override
     public List<HeatMap> getYearHeatMap(Long userId, Integer year) {
@@ -36,5 +41,37 @@ public class HeatMapServiceImpl implements HeatMapService {
             cursor = cursor.plusDays(1);
         }
         return result;
+    }
+
+    @Override
+    public Map<String, Long> getTypeChartData(Long userId) {
+        QueryWrapper<Item> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        wrapper.select("type, COUNT(*) AS cnt");
+        wrapper.groupBy("type");
+        List<Map<String, Object>> rows = itemMapper.selectMaps(wrapper);
+
+        return rows.stream()
+                .collect(Collectors.toMap(
+                        row -> (String) row.get("type"),
+                        row -> (Long) row.get("cnt"),
+                        (a, b) -> a
+                ));
+    }
+
+    @Override
+    public Object getStats(Long userId) {
+        QueryWrapper<Item> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        wrapper.select("status, COUNT(*) AS cnt");
+        wrapper.groupBy("status");
+        List<Map<String, Object>> rows = itemMapper.selectMaps(wrapper);
+
+        return rows.stream()
+                .collect(Collectors.toMap(
+                        row -> (String) row.get("status"),
+                        row -> (Long) row.get("cnt"),
+                        (a, b) -> a
+                ));
     }
 }
