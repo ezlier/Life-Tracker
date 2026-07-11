@@ -44,7 +44,6 @@ public class ItemController {
         return Result.success(item);
     }
 
-
     @PostMapping
     public Result save(@CurrentUserId Long userId,
             @RequestBody ItemDTO itemDTO) {

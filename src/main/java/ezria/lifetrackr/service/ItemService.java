@@ -17,4 +17,5 @@ public interface ItemService {
     ItemVO getItem(Long userId, Long itemId);
 
     void update(ItemDTO itemDTO);
+
 }

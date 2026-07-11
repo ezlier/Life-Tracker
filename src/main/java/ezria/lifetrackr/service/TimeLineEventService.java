@@ -11,7 +11,7 @@ public interface TimeLineEventService {
 
     void createLog(ItemDTO itemDTO, Long id);
 
-    Page<TimeLineEventVO> getTimeLineEvents(Long userId, Long itemId, String eventType,
+    Page<TimeLineEventVO> getTimeLineEvents(Long userId, Long itemId, String eventType,String itemType,
                                              LocalDate startDate, LocalDate endDate,
                                              Integer pageNum, Integer pageSize);
 }

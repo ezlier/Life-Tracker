@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ezria.lifetrackr.Mapper.FocusMapper">
+
+    <insert id="insertFocusSession" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO focus_session
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            user_id,
+            mode,
+            is_completed,
+            start_time,
+            status,
+            <if test="plannedDuration != null">planned_duration,</if>
+            <if test="goal != null and goal != ''">goal,</if>
+            <if test="itemId != null">item_id,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{userId},
+            #{mode},
+            FALSE,
+            NOW(),
+            #{status},
+            <if test="plannedDuration != null">#{plannedDuration},</if>
+            <if test="goal != null and goal != ''">#{goal},</if>
+            <if test="itemId != null">#{itemId},</if>
+        </trim>
+    </insert>
+
+    <select id="selectById" resultType="ezria.lifetrackr.Entity.FocusSession">
+        SELECT * FROM focus_session WHERE id = #{id}
+    </select>
+
+    <update id="updateById">
+        UPDATE focus_session
+        <set>
+            <if test="actualDuration != null">actual_duration = #{actualDuration},</if>
+            <if test="pauseDuration != null">pause_duration = #{pauseDuration},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="isCompleted != null">is_completed = #{isCompleted},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

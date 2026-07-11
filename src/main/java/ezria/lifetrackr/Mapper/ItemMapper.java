@@ -19,4 +19,5 @@ public interface ItemMapper extends BaseMapper<Item> {
     void itemDelete(Long userId, Long itemId);
 
     void updateByIdAndUser(Item item);
+
 }

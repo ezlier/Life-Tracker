@@ -27,16 +27,17 @@ public class TimeLineEventController {
     public Result getTimeLineEvents(@CurrentUserId Long userId,
                                      @RequestParam(required = false) Long itemId,
                                      @RequestParam(required = false) String eventType,
+                                     @RequestParam(required = false) String itemType,
                                      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                      @RequestParam(defaultValue = "1") Integer pageNum,
                                      @RequestParam(defaultValue = "10") Integer pageSize) {
 
-        log.info("Getting timeline events: userId={}, itemId={}, eventType={}, startDate={}, endDate={}",
-                 userId, itemId, eventType, startDate, endDate);
+        log.info("Getting timeline events: userId={}, itemId={}, eventType={}, itemType={}, startDate={}, endDate={}",
+                 userId, itemId, eventType, itemType, startDate, endDate);
 
         Page<TimeLineEventVO> page = timeLineEventService.getTimeLineEvents(
-                userId, itemId, eventType, startDate, endDate, pageNum, pageSize);
+                userId, itemId, eventType, itemType, startDate, endDate, pageNum, pageSize);
         return Result.success(page);
     }
 }

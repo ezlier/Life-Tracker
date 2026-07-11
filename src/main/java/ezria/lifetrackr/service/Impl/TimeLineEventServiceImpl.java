@@ -59,7 +59,7 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
     }
 
     @Override
-    public Page<TimeLineEventVO> getTimeLineEvents(Long userId, Long itemId, String eventType,
+    public Page<TimeLineEventVO> getTimeLineEvents(Long userId, Long itemId, String eventType,String itemType,
                                                     LocalDate startDate, LocalDate endDate,
                                                     Integer pageNum, Integer pageSize) {
         Page<TimeLineEvent> page = new Page<>(pageNum, pageSize);
@@ -69,6 +69,16 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
 
         if (itemId != null) {
             wrapper.eq("item_id", itemId);
+        }
+        if (itemType != null && !itemType.isEmpty()) {
+            // item_type 在 item 表，不在 timeline_event 表，先查匹配的 item_id
+            QueryWrapper<Item> itemWrapper = new QueryWrapper<>();
+            itemWrapper.eq("user_id", userId).eq("type", itemType).select("id");
+            List<Object> itemIds = itemMapper.selectObjs(itemWrapper);
+            if (itemIds.isEmpty()) {
+                itemIds.add(-1L); // 无匹配项时传入不存在的 ID，保证返回空结果
+            }
+            wrapper.in("item_id", itemIds);
         }
         if (eventType != null && !eventType.isEmpty()) {
             wrapper.eq("event_type", eventType);
