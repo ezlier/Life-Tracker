@@ -7,6 +7,7 @@ import ezria.lifetrackr.Entity.User;
 import ezria.lifetrackr.Mapper.LoginMapper;
 import ezria.lifetrackr.VO.UserVO;
 import ezria.lifetrackr.service.LoginService;
+import ezria.lifetrackr.service.TimeLineEventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private JwtUtils jwtUtils;
 
+    @Autowired
+    private TimeLineEventService timeLineEventService;
+
 
     @Override
     public UserVO login(UserDTO userDTO) {
@@ -33,9 +37,13 @@ public class LoginServiceImpl implements LoginService {
             userMap.put("id", user.getId());
             userMap.put("username", user.getName());
             String token = jwtUtils.generateToken(userMap);
+
+            timeLineEventService.saveLoginEvent(user.getId());
+
             return new UserVO(user.getId(), user.getName(), token);
 
         }
+
         return null;
     }
 }

@@ -71,7 +71,7 @@ public class ItemServiceImpl implements ItemService {
         Long itemId = item.getId();
 
         // 2. 插入时间线事件（同一事务，任一失败则全部回滚）
-        timeLineEventService.save(itemDTO, itemId);
+        timeLineEventService.saveItemEvent(itemDTO, itemId);
 
         return itemId;
     }

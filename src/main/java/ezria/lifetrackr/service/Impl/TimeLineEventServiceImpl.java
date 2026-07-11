@@ -3,10 +3,12 @@ package ezria.lifetrackr.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import ezria.lifetrackr.DTO.ItemDTO;
+import ezria.lifetrackr.Entity.FocusSession;
 import ezria.lifetrackr.Entity.Item;
 import ezria.lifetrackr.Entity.TimeLineEvent;
 import ezria.lifetrackr.Entity.TimelineEventType;
 import ezria.lifetrackr.Handler.ChangeHandler;
+import ezria.lifetrackr.Mapper.FocusMapper;
 import ezria.lifetrackr.Mapper.ItemMapper;
 import ezria.lifetrackr.Mapper.TimeLineEventMapper;
 import ezria.lifetrackr.VO.TimeLineEventVO;
@@ -32,10 +34,13 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
     private ItemMapper itemMapper;
 
     @Autowired
+    private FocusMapper focusMapper;
+
+    @Autowired
     private List<ChangeHandler> handlers;
 
     @Override
-    public void save(ItemDTO itemDTO, Long itemId) {
+    public void saveItemEvent(ItemDTO itemDTO, Long itemId) {
         TimeLineEvent event = new TimeLineEvent();
         event.setUserId(itemDTO.getUserId());
         event.setItemId(itemId);
@@ -104,8 +109,21 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
         }
         final Map<Long, Item> finalItemMap = itemMap;
 
+        // 批量查询关联的 FocusSession
+        Set<Long> focusIds = eventPage.getRecords().stream()
+                .map(TimeLineEvent::getFocusSessionId)
+                .filter(id -> id != null)
+                .collect(Collectors.toSet());
+        Map<Long, FocusSession> focusMap = Map.of();
+        if (!focusIds.isEmpty()) {
+            List<FocusSession> sessions = focusMapper.selectBatchIds(focusIds);
+            focusMap = sessions.stream().collect(Collectors.toMap(FocusSession::getId, Function.identity()));
+        }
+        final Map<Long, FocusSession> finalFocusMap = focusMap;
+
         List<TimeLineEventVO> voList = eventPage.getRecords().stream()
-                .map(event -> toVO(event, finalItemMap.get(event.getItemId())))
+                .map(event -> toVO(event, finalItemMap.get(event.getItemId()),
+                                       finalFocusMap.get(event.getFocusSessionId())))
                 .collect(Collectors.toList());
 
         Page<TimeLineEventVO> voPage = new Page<>(pageNum, pageSize, eventPage.getTotal());
@@ -113,7 +131,48 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
         return voPage;
     }
 
-    private TimeLineEventVO toVO(TimeLineEvent event, Item item) {
+    @Override
+    public void saveFocusSessionEvent(FocusSession focusSession, Long focusSessionId) {
+        TimeLineEvent event = new TimeLineEvent();
+        event.setUserId(focusSession.getUserId());
+        event.setFocusSessionId(focusSessionId);
+        event.setEventType(TimelineEventType.FOCUS_SESSION_START);
+        event.setDescription(focusSession.getGoal());
+        timeLineEventMapper.eventInsert(event);
+        System.out.println(focusSessionId);
+    }
+
+    @Override
+    public void completedFocusSessionEvent(FocusSession session) {
+        TimeLineEvent event = new TimeLineEvent();
+        event.setUserId(session.getUserId());
+        event.setFocusSessionId(session.getId());
+        event.setEventType(TimelineEventType.FOCUS_SESSION_COMPLETE);
+        event.setDescription(session.getGoal());
+        timeLineEventMapper.eventInsert(event);
+    }
+
+    @Override
+    public void cancelFocusSessionEvent(FocusSession session) {
+        TimeLineEvent event = new TimeLineEvent();
+        event.setUserId(session.getUserId());
+        event.setFocusSessionId(session.getId());
+        event.setEventType(TimelineEventType.FOCUS_SESSION_CANCEL);
+        event.setDescription(session.getGoal());
+        timeLineEventMapper.eventInsert(event);
+    }
+
+    @Override
+    public void saveLoginEvent(Integer id) {
+        TimeLineEvent event = new TimeLineEvent();
+        event.setUserId(id.longValue());
+        event.setEventType(TimelineEventType.LOGIN_SUCCESSFULLY);
+        event.setDescription("用户登录");
+        timeLineEventMapper.eventInsert(event);
+    }
+
+
+    private TimeLineEventVO toVO(TimeLineEvent event, Item item, FocusSession focusSession) {
         TimeLineEventVO vo = new TimeLineEventVO();
         BeanUtils.copyProperties(event, vo);
         vo.setEventType(event.getEventType().name());
@@ -124,6 +183,11 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
             vo.setItemRating(item.getRating());
             vo.setItemType(item.getType());
             vo.setItemStatus(item.getStatus());
+        }
+        if (focusSession != null) {
+            vo.setFocusSessionStartTime(focusSession.getStartTime());
+            vo.setFocusSessionGoal(focusSession.getGoal());
+            vo.setFocusSessionDuration(focusSession.getActualDuration());
         }
         return vo;
     }

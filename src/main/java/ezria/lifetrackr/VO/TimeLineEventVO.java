@@ -14,6 +14,7 @@ public class TimeLineEventVO {
     private Long id;
     private Long userId;
     private Long itemId;
+    private Long focusSessionId;
     private String eventType;
     private String description;
     private String eventData;
@@ -25,4 +26,9 @@ public class TimeLineEventVO {
     private Integer itemRating;
     private String itemType;
     private String itemStatus;
+
+    // 关联 FocusSession 信息
+    private LocalDateTime focusSessionStartTime;
+    private String focusSessionGoal;
+    private Integer focusSessionDuration;
 }

@@ -4,9 +4,11 @@ import ezria.lifetrackr.DTO.FocusSessionDTO;
 import ezria.lifetrackr.Entity.FocusSession;
 import ezria.lifetrackr.Mapper.FocusMapper;
 import ezria.lifetrackr.service.FocusService;
+import ezria.lifetrackr.service.TimeLineEventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -16,13 +18,19 @@ public class FocusServiceImpl implements FocusService {
     @Autowired
     private FocusMapper focusMapper;
 
+    @Autowired
+    private TimeLineEventService timeLineEventService;
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Integer startFocusSession(FocusSessionDTO focusSessionDTO) {
         FocusSession focusSession = new FocusSession();
         BeanUtils.copyProperties(focusSessionDTO, focusSession);
         focusSession.setIsCompleted(false);
         focusSession.setStatus("running");
         focusMapper.insertFocusSession(focusSession);
+
+        timeLineEventService.saveFocusSessionEvent(focusSession, (long) focusSession.getId().intValue());
         return focusSession.getId().intValue();
     }
 
@@ -69,6 +77,7 @@ public class FocusServiceImpl implements FocusService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void completeFocusSession(Long id) {
         FocusSession session = focusMapper.selectById(id);
         if (session == null) {
@@ -94,8 +103,10 @@ public class FocusServiceImpl implements FocusService {
         session.setEndTime(now);
 
         focusMapper.updateById(session);
+        timeLineEventService.completedFocusSessionEvent(session);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void cancelFocusSession(Long id) {
         FocusSession session = focusMapper.selectById(id);
@@ -121,5 +132,6 @@ public class FocusServiceImpl implements FocusService {
         session.setEndTime(now);
 
         focusMapper.updateById(session);
+        timeLineEventService.cancelFocusSessionEvent(session);
     }
 }

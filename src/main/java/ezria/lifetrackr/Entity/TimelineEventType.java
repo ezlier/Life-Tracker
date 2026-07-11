@@ -14,7 +14,14 @@ public enum TimelineEventType {
     RATE_ITEM("评分"),
     COMMENT_ITEM("评论"),
     FAVORITE_ITEM("收藏"),
-    TAG_UPDATE("修改标签");
+    TAG_UPDATE("修改标签"),
+
+    FOCUS_SESSION_START("开始专注"),
+    FOCUS_SESSION_COMPLETE("完成专注"),
+    FOCUS_SESSION_CANCEL("取消专注"),
+
+    REGISTERED_SUCCESSFULLY("注册成功"),
+    LOGIN_SUCCESSFULLY("登录成功");
 
     private final String description;
 }

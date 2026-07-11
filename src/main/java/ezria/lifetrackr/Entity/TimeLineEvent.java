@@ -1,5 +1,6 @@
 package ezria.lifetrackr.Entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,12 @@ public class TimeLineEvent {
      * 对应的 Item
      */
     private Long itemId;
+
+    /**
+     * 对应的 FocusSession
+     */
+    @TableField("focus_id")
+    private Long focusSessionId;
 
     /**
      * 事件类型

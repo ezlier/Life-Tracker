@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Options;
 @Mapper
 public interface TimeLineEventMapper extends BaseMapper<TimeLineEvent> {
 
-    @Insert("insert into timeline_event (user_id, item_id, event_type, description, event_data) " +
-            "values (#{userId}, #{itemId}, #{eventType}, #{description}, #{eventData})")
+    @Insert("insert into timeline_event (user_id, item_id, focus_id, event_type, description, event_data) " +
+            "values (#{userId}, #{itemId}, #{focusSessionId}, #{eventType}, #{description}, #{eventData})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int eventInsert(TimeLineEvent event);
 }
