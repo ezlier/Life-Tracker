@@ -9,7 +9,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
-  type-enums-package: ezria.lifetrackr.Entity
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
 

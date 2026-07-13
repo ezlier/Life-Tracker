@@ -1,5 +1,7 @@
 package ezria.lifetrackr.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import ezria.lifetrackr.DTO.FocusSessionDTO;
 import ezria.lifetrackr.Entity.FocusSession;
 import ezria.lifetrackr.Mapper.FocusMapper;
@@ -129,9 +131,34 @@ public class FocusServiceImpl implements FocusService {
         }
 
         session.setStatus("canceled");
+        session.setIsCompleted(true);
         session.setEndTime(now);
 
         focusMapper.updateById(session);
         timeLineEventService.cancelFocusSessionEvent(session);
+    }
+
+    @Override
+    public Page<FocusSession> getFocusSessions(Long userId, String mode, String goal, String status,
+                                                Boolean isCompleted, Integer pageNum, Integer pageSize) {
+        Page<FocusSession> page = new Page<>(pageNum, pageSize);
+
+        QueryWrapper<FocusSession> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        if (mode != null && !mode.isEmpty()) {
+            wrapper.eq("mode", mode);
+        }
+        if (goal != null && !goal.isEmpty()) {
+            wrapper.like("goal", goal);
+        }
+        if (status != null && !status.isEmpty()) {
+            wrapper.eq("status", status);
+        }
+        if (isCompleted != null) {
+            wrapper.eq("is_completed", isCompleted);
+        }
+        wrapper.orderByDesc("start_time");
+
+        return focusMapper.selectPage(page, wrapper);
     }
 }

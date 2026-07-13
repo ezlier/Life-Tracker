@@ -122,8 +122,9 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
         final Map<Long, FocusSession> finalFocusMap = focusMap;
 
         List<TimeLineEventVO> voList = eventPage.getRecords().stream()
-                .map(event -> toVO(event, finalItemMap.get(event.getItemId()),
-                                       finalFocusMap.get(event.getFocusSessionId())))
+                .map(event -> toVO(event,
+                        event.getItemId() != null ? finalItemMap.get(event.getItemId()) : null,
+                        event.getFocusSessionId() != null ? finalFocusMap.get(event.getFocusSessionId()) : null))
                 .collect(Collectors.toList());
 
         Page<TimeLineEventVO> voPage = new Page<>(pageNum, pageSize, eventPage.getTotal());
