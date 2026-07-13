@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import ezria.lifetrackr.DTO.FocusSessionDTO;
 import ezria.lifetrackr.Entity.FocusSession;
 import ezria.lifetrackr.Mapper.FocusMapper;
+import ezria.lifetrackr.Config.PresenceProperties;
 import ezria.lifetrackr.service.FocusService;
 import ezria.lifetrackr.service.TimeLineEventService;
+import ezria.lifetrackr.websocket.PresenceRegistry;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class FocusServiceImpl implements FocusService {
@@ -22,6 +25,12 @@ public class FocusServiceImpl implements FocusService {
 
     @Autowired
     private TimeLineEventService timeLineEventService;
+
+    @Autowired
+    private PresenceRegistry presenceRegistry;
+
+    @Autowired
+    private PresenceProperties presenceProperties;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -33,6 +42,7 @@ public class FocusServiceImpl implements FocusService {
         focusMapper.insertFocusSession(focusSession);
 
         timeLineEventService.saveFocusSessionEvent(focusSession, (long) focusSession.getId().intValue());
+        trackUntilClientBinds(focusSession);
         return focusSession.getId().intValue();
     }
 
@@ -55,6 +65,7 @@ public class FocusServiceImpl implements FocusService {
         session.setStartTime(now);
 
         focusMapper.updateById(session);
+        presenceRegistry.stopTracking(id);
     }
 
     @Override
@@ -76,6 +87,7 @@ public class FocusServiceImpl implements FocusService {
         session.setStartTime(now);
 
         focusMapper.updateById(session);
+        trackUntilClientBinds(session);
     }
 
     @Override
@@ -106,6 +118,7 @@ public class FocusServiceImpl implements FocusService {
 
         focusMapper.updateById(session);
         timeLineEventService.completedFocusSessionEvent(session);
+        presenceRegistry.stopTracking(id);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -136,6 +149,36 @@ public class FocusServiceImpl implements FocusService {
 
         focusMapper.updateById(session);
         timeLineEventService.cancelFocusSessionEvent(session);
+        presenceRegistry.stopTracking(id);
+    }
+
+    @Override
+    public boolean isRunningFocusSession(Long userId, Long id) {
+        FocusSession session = focusMapper.selectByIdAndUser(userId, id);
+        return session != null && "running".equals(session.getStatus());
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean autoPauseFocusSession(Long userId, Long id) {
+        int updated = focusMapper.autoPauseIfRunning(userId, id);
+        if (updated == 0) {
+            return false;
+        }
+
+        FocusSession session = focusMapper.selectByIdAndUser(userId, id);
+        timeLineEventService.autoPausedFocusSessionEvent(session);
+        return true;
+    }
+
+    @Override
+    public List<FocusSession> getRunningFocusSessionsForRecovery() {
+        return focusMapper.selectRunningSessions();
+    }
+
+    private void trackUntilClientBinds(FocusSession session) {
+        long suspectSince = System.currentTimeMillis() + presenceProperties.getHeartbeatTimeoutMs();
+        presenceRegistry.trackRecoveryCandidate(session.getUserId(), session.getId(), suspectSince);
     }
 
     @Override

@@ -15,3 +15,14 @@ mybatis-plus:
 jwt:
   secret: YTNCaGNtRnBiZ1p2YkdGdWFtRnNjMkZ5WldGeWFXWnJaWEl1YzJWamRHbHZibk09
   expire-hours: 12
+
+presence:
+  server-ping-interval-ms: 10000
+  heartbeat-timeout-ms: 25000
+  offline-grace-ms: 15000
+  scan-interval-ms: 5000
+  ticket-ttl-ms: 30000
+  startup-recovery-delay-ms: 45000
+  allowed-origin-patterns:
+    - "http://localhost:*"
+    - "http://127.0.0.1:*"

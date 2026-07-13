@@ -17,6 +17,7 @@ public enum TimelineEventType {
     TAG_UPDATE("修改标签"),
 
     FOCUS_SESSION_START("开始专注"),
+    FOCUS_SESSION_AUTO_PAUSE("客户端离线自动暂停"),
     FOCUS_SESSION_COMPLETE("完成专注"),
     FOCUS_SESSION_CANCEL("取消专注"),
 
