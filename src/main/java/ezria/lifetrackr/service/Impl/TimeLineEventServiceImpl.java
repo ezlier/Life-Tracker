@@ -175,7 +175,7 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
     }
 
     @Override
-    public void saveLoginEvent(Integer id) {
+    public void saveLoginEvent( Long id) {
         TimeLineEvent event = new TimeLineEvent();
         event.setUserId(id.longValue());
         event.setEventType(TimelineEventType.LOGIN_SUCCESSFULLY);

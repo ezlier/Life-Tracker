@@ -2,7 +2,7 @@ package ezria.lifetrackr.Controller;
 
 import ezria.lifetrackr.Common.Result;
 import ezria.lifetrackr.DTO.UserDTO;
-import ezria.lifetrackr.VO.UserVO;
+import ezria.lifetrackr.VO.TokenVO;
 import ezria.lifetrackr.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ public class LoginController {
     public Result login(@RequestBody UserDTO userDTO) {
         log.info("Login attempt for user: {}", userDTO.getUsername());
         log.info("Password: {}", userDTO.getPassword());
-        UserVO userVO = loginService.login(userDTO);
-        if (userVO != null) {
-            return Result.success(userVO);
+        TokenVO tokenVO = loginService.login(userDTO);
+        if (tokenVO != null) {
+            return Result.success(tokenVO);
         }
         return Result.error("Login failed");
     }

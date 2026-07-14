@@ -1,5 +1,6 @@
 package ezria.lifetrackr.VO;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,11 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserVO {
+public class TokenVO {
     private Long id;
-    private String name;
-    private String Email;
-    private Integer phone;
-    private String avatar;
-    private String Introduction;
+    private String username;
+    private String token;
 }

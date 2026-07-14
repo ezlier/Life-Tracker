@@ -24,5 +24,5 @@ public interface TimeLineEventService {
 
     void cancelFocusSessionEvent(FocusSession session);
 
-    void saveLoginEvent(Integer id);
+    void saveLoginEvent(Long id);
 }

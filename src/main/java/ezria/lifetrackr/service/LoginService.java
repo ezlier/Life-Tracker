@@ -2,7 +2,7 @@ package ezria.lifetrackr.service;
 
 
 import ezria.lifetrackr.DTO.UserDTO;
-import ezria.lifetrackr.VO.UserVO;
+import ezria.lifetrackr.VO.TokenVO;
 public interface LoginService {
-    UserVO login(UserDTO userDTO);
+    TokenVO login(UserDTO userDTO);
 }

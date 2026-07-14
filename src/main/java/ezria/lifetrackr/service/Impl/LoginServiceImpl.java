@@ -5,7 +5,7 @@ import ezria.lifetrackr.DTO.UserDTO;
 
 import ezria.lifetrackr.Entity.User;
 import ezria.lifetrackr.Mapper.LoginMapper;
-import ezria.lifetrackr.VO.UserVO;
+import ezria.lifetrackr.VO.TokenVO;
 import ezria.lifetrackr.service.LoginService;
 import ezria.lifetrackr.service.TimeLineEventService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService {
 
 
     @Override
-    public UserVO login(UserDTO userDTO) {
+    public TokenVO login(UserDTO userDTO) {
         User user = loginMapper.findUserByUsername(userDTO);
         log.info("User found: {}", user);
         if (user != null) {
@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
 
             timeLineEventService.saveLoginEvent(user.getId());
 
-            return new UserVO(user.getId(), user.getName(), token);
+            return new TokenVO(user.getId(), user.getName(), token);
 
         }
 
