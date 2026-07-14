@@ -35,4 +35,15 @@ public class HeatMapController {
         log.info("User {} requested stats data", userId);
         return Result.success(heatMapService.getStats(userId));
     }
+
+    @GetMapping("/Duration")
+    public Result getDuration(@CurrentUserId Long userId) {
+        return Result.success(heatMapService.getDuration(userId));
+    }
+
+    @GetMapping("/focusStatus")
+    public Result getFocusStats(@CurrentUserId Long userId) {
+        log.info("User {} requested focus stats data", userId);
+        return Result.success(heatMapService.getFocusStats(userId));
+    }
 }

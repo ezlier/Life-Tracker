@@ -1,8 +1,10 @@
 package ezria.lifetrackr.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import ezria.lifetrackr.Entity.FocusSession;
 import ezria.lifetrackr.Entity.HeatMap;
 import ezria.lifetrackr.Entity.Item;
+import ezria.lifetrackr.Mapper.FocusMapper;
 import ezria.lifetrackr.Mapper.HeatMapMapper;
 import ezria.lifetrackr.Mapper.ItemMapper;
 import ezria.lifetrackr.service.HeatMapService;
@@ -23,6 +25,9 @@ public class HeatMapServiceImpl implements HeatMapService {
 
     @Autowired
     private ItemMapper itemMapper;
+
+    @Autowired
+    private FocusMapper focusMapper;
 
     @Override
     public List<HeatMap> getYearHeatMap(Long userId, Integer year) {
@@ -73,5 +78,23 @@ public class HeatMapServiceImpl implements HeatMapService {
                         row -> (Long) row.get("cnt"),
                         (a, b) -> a
                 ));
+    }
+
+    @Override
+    public Object getDuration(Long userId) {
+        QueryWrapper<FocusSession> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        wrapper.select("COALESCE(SUM(actual_duration), 0) AS totalActualDuration",
+                       "COALESCE(SUM(pause_duration), 0) AS totalPauseDuration");
+        return focusMapper.selectMaps(wrapper).get(0);
+    }
+
+    @Override
+    public Object getFocusStats(Long userId) {
+        QueryWrapper<FocusSession> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        wrapper.select("status, COUNT(*) AS cnt");
+        wrapper.groupBy("status");
+        return focusMapper.selectMaps(wrapper);
     }
 }

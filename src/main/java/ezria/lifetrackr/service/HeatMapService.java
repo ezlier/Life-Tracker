@@ -11,4 +11,8 @@ public interface HeatMapService {
     Map<String, Long> getTypeChartData(Long userId);
 
     Object getStats(Long userId);
+
+    Object getDuration(Long userId);
+
+    Object getFocusStats(Long userId);
 }
