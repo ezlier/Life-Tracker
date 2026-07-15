@@ -20,8 +20,6 @@ public interface TimeLineEventService {
 
     void completedFocusSessionEvent(FocusSession session);
 
-    void autoPausedFocusSessionEvent(FocusSession session);
-
     void cancelFocusSessionEvent(FocusSession session);
 
     void saveLoginEvent(Long id);

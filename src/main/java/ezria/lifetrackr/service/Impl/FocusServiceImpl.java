@@ -166,8 +166,6 @@ public class FocusServiceImpl implements FocusService {
             return false;
         }
 
-        FocusSession session = focusMapper.selectByIdAndUser(userId, id);
-        timeLineEventService.autoPausedFocusSessionEvent(session);
         return true;
     }
 

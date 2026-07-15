@@ -153,16 +153,6 @@ public class TimeLineEventServiceImpl implements TimeLineEventService {
         timeLineEventMapper.eventInsert(event);
     }
 
-    @Override
-    public void autoPausedFocusSessionEvent(FocusSession session) {
-        TimeLineEvent event = new TimeLineEvent();
-        event.setUserId(session.getUserId());
-        event.setFocusSessionId(session.getId());
-        event.setEventType(TimelineEventType.FOCUS_SESSION_AUTO_PAUSE);
-        event.setDescription(session.getGoal());
-        event.setEventData("{\"reason\":\"CLIENT_OFFLINE\"}");
-        timeLineEventMapper.eventInsert(event);
-    }
 
     @Override
     public void cancelFocusSessionEvent(FocusSession session) {
