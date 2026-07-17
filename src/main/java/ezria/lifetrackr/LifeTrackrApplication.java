@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan("ezria.lifetrackr.Mapper")
+@MapperScan({"ezria.lifetrackr.Mapper", "ezria.lifetrackr.module.Admin.Mapper"})
 public class LifeTrackrApplication {
 
     public static void main(String[] args) {

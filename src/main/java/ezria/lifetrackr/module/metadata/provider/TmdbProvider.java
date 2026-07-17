@@ -23,8 +23,7 @@ public class TmdbProvider implements MetadataProvider{
 
     @Override
     public List<MetadataDTO> search(String keyword) {
-        TmdbSearchResponse response =
-                client.searchMovie(keyword);
+        TmdbSearchResponse response = client.searchMovie(keyword);
         return response.getResults()
                 .stream()
                 .map(this::convert)
@@ -37,8 +36,7 @@ public class TmdbProvider implements MetadataProvider{
     }
 
     private MetadataDTO convert(TmdbMovie movie){
-        MetadataDTO dto =
-                new MetadataDTO();
+        MetadataDTO dto = new MetadataDTO();
         dto.setTitle(movie.getTitle());
         dto.setDescription(movie.getOverview());
         dto.setCover(
@@ -46,8 +44,7 @@ public class TmdbProvider implements MetadataProvider{
                         +movie.getPosterPath());
         dto.setRating(movie.getVoteAverage());
         dto.setSource("TMDB");
-        dto.setSourceId(
-                movie.getId().toString());
+        dto.setSourceId(movie.getId().toString());
         return dto;
 
     }

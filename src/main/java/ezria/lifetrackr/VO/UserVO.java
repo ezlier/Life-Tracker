@@ -14,4 +14,5 @@ public class UserVO {
     private Integer phone;
     private String avatar;
     private String Introduction;
+    private String isAdmin;
 }
