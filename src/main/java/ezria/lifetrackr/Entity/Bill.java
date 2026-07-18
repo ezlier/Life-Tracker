@@ -1,0 +1,20 @@
+package ezria.lifetrackr.Entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Bill {
+    private Long id;
+    private Long userid;
+    private String counterparty;
+    private String goods;
+    private String income;
+    private float money;
+    private LocalDateTime tradingHours;
+}

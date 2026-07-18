@@ -12,12 +12,17 @@ import reactor.netty.transport.ProxyProvider;
 public class TmdbConfig {
     @Bean
     public WebClient tmdbWebClient(
-            @Value("${tmdb.base-url}") String baseUrl
+            @Value("${tmdb.base-url}") String baseUrl,
+            @Value("${app.proxy.enabled:false}") boolean proxyEnabled,
+            @Value("${app.proxy.host:127.0.0.1}") String proxyHost,
+            @Value("${app.proxy.port:7897}") int proxyPort
     ) {
-        HttpClient httpClient = HttpClient.create()
-                .proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)
-                        .host("127.0.0.1")
-                        .port(7897));
+        HttpClient httpClient = HttpClient.create();
+        if (proxyEnabled) {
+            httpClient = httpClient.proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)
+                    .host(proxyHost)
+                    .port(proxyPort));
+        }
 
         return WebClient.builder()
                 .baseUrl(baseUrl)
